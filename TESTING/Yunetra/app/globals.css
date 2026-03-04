@@ -1,0 +1,558 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @property --pos-x {
+    syntax: '<percentage>';
+    initial-value: 11.14%;
+    inherits: false;
+  }
+
+  @property --pos-y {
+    syntax: '<percentage>';
+    initial-value: 140%;
+    inherits: false;
+  }
+
+  @property --spread-x {
+    syntax: '<percentage>';
+    initial-value: 150%;
+    inherits: false;
+  }
+
+  @property --spread-y {
+    syntax: '<percentage>';
+    initial-value: 180.06%;
+    inherits: false;
+  }
+
+  @property --color-1 {
+    syntax: '<color>';
+    initial-value: #000;
+    inherits: false;
+  }
+
+  @property --color-2 {
+    syntax: '<color>';
+    initial-value: #08012c;
+    inherits: false;
+  }
+
+  @property --color-3 {
+    syntax: '<color>';
+    initial-value: #4e1e40;
+    inherits: false;
+  }
+
+  @property --color-4 {
+    syntax: '<color>';
+    initial-value: #70464e;
+    inherits: false;
+  }
+
+  @property --color-5 {
+    syntax: '<color>';
+    initial-value: #88394c;
+    inherits: false;
+  }
+
+  @property --border-angle {
+    syntax: '<angle>';
+    initial-value: 20deg;
+    inherits: true;
+  }
+
+  @property --border-color-1 {
+    syntax: '<color>';
+    initial-value: hsla(340, 75%, 60%, 0.2);
+    inherits: true;
+  }
+
+  @property --border-color-2 {
+    syntax: '<color>';
+    initial-value: hsla(340, 75%, 40%, 0.75);
+    inherits: true;
+  }
+
+  @property --stop-1 {
+    syntax: '<percentage>';
+    initial-value: 37.35%;
+    inherits: false;
+  }
+
+  @property --stop-2 {
+    syntax: '<percentage>';
+    initial-value: 61.36%;
+    inherits: false;
+  }
+
+  @property --stop-3 {
+    syntax: '<percentage>';
+    initial-value: 78.42%;
+    inherits: false;
+  }
+
+  @property --stop-4 {
+    syntax: '<percentage>';
+    initial-value: 89.52%;
+    inherits: false;
+  }
+
+  @property --stop-5 {
+    syntax: '<percentage>';
+    initial-value: 100%;
+    inherits: false;
+  }
+}
+
+@layer components {
+  .gradient-button {
+    @apply relative appearance-none cursor-pointer;
+    --color-1: #000022;
+    --color-2: #1f3f6d;
+    --color-3: #469396;
+    --color-4: #f1ffa5;
+    --border-angle: 200deg;
+    --border-color-1: hsla(320, 75%, 90%, 0.6);
+    --border-color-2: hsla(320, 50%, 90%, 0.15);
+    background: radial-gradient(
+      var(--spread-x) var(--spread-y) at var(--pos-x) var(--pos-y),
+      var(--color-1) var(--stop-1),
+      var(--color-2) var(--stop-2),
+      var(--color-3) var(--stop-3),
+      var(--color-4) var(--stop-4),
+      var(--color-5) var(--stop-5)
+    );
+    transition:
+      --pos-x 0.5s,
+      --pos-y 0.5s,
+      --spread-x 0.5s,
+      --spread-y 0.5s,
+      --color-1 0.5s,
+      --color-2 0.5s,
+      --color-3 0.5s,
+      --color-4 0.5s,
+      --color-5 0.5s,
+      --border-angle 0.5s,
+      --border-color-1 0.5s,
+      --border-color-2 0.5s,
+      --stop-1 0.5s,
+      --stop-2 0.5s,
+      --stop-3 0.5s,
+      --stop-4 0.5s,
+      --stop-5 0.5s;
+  }
+
+  .gradient-button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      var(--border-angle),
+      var(--border-color-1),
+      var(--border-color-2)
+    );
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .gradient-button:hover {
+    --pos-x: 0%;
+    --pos-y: 95.51%;
+    --spread-x: 110.24%;
+    --spread-y: 110.2%;
+    --color-1: #000020;
+    --color-2: #f1ffa5;
+    --color-3: #469396;
+    --color-4: #1f3f6d;
+    --color-5: #000;
+    --border-angle: 190deg;
+    --border-color-1: hsla(320, 78%, 90%, 0.1);
+    --border-color-2: hsla(320, 75%, 90%, 0.6);
+    --stop-1: 0%;
+    --stop-2: 10%;
+    --stop-3: 35.44%;
+    --stop-4: 71.34%;
+    --stop-5: 90.76%;
+    --border-angle: 210deg;
+    --border-color-1: hsla(320, 75%, 90%, 0.2);
+    --border-color-2: hsla(320, 50%, 90%, 0.75);
+  }
+}
+
+@import './tokens.css';
+@import './components.css';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+body {
+  background: var(--surface-base);
+  color: var(--text-primary);
+  font-family: 'DM Sans', sans-serif;
+  font-size: var(--font-md);
+  line-height: var(--leading-normal);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar       { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #60a5fa; border-radius: 4px; opacity: 0.5; }
+
+/* Text selection */
+::selection {
+  background: var(--brand-primary-dim);
+  color: var(--brand-primary);
+}
+
+/* Focus visible — accessibility */
+:focus-visible {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Headings default */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Syne', sans-serif;
+  letter-spacing: var(--tracking-normal);
+  line-height: var(--leading-tight);
+  color: var(--text-primary);
+}
+
+/* Monospace elements */
+code, kbd, pre {
+  font-family: 'Space Mono', monospace;
+}
+
+/* Remove default button styles */
+button { cursor: pointer; font-family: inherit; }
+
+/* Smooth transitions on interactive elements */
+a, button, input, select, textarea {
+  transition: var(--transition-fast);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Noise Texture Overlay */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Animated Gradient Mesh Background */
+.gradient-mesh {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(circle at 15% 50%, rgba(56,189,248,0.03), transparent 25%),
+    radial-gradient(circle at 85% 30%, rgba(99,102,241,0.03), transparent 25%);
+  animation: mesh-shift 20s ease-in-out infinite alternate;
+}
+
+@keyframes mesh-shift {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* ── LIQUID GLASS / APPLE GLASSMORPHISM ────── */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    inset 0 0.5px 0 0 rgba(255, 255, 255, 0.08),
+    inset 0 -0.5px 0 0 rgba(255, 255, 255, 0.02),
+    0 8px 40px rgba(0, 0, 0, 0.3),
+    0 2px 12px rgba(0, 0, 0, 0.2);
+}
+
+.glass-subtle {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow:
+    inset 0 0.5px 0 0 rgba(255, 255, 255, 0.06),
+    0 4px 24px rgba(0, 0, 0, 0.2);
+}
+
+.glass-elevated {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(60px) saturate(200%);
+  -webkit-backdrop-filter: blur(60px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.1),
+    inset 0 -0.5px 0 0 rgba(255, 255, 255, 0.03),
+    0 16px 70px rgba(0, 0, 0, 0.4),
+    0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow:
+    inset 0 0.5px 0 0 rgba(255, 255, 255, 0.08),
+    0 8px 32px rgba(0, 0, 0, 0.25);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow:
+    inset 0 0.5px 0 0 rgba(255, 255, 255, 0.12),
+    0 16px 50px rgba(0, 0, 0, 0.35),
+    0 0 60px rgba(56, 189, 248, 0.06);
+  transform: translateY(-2px);
+}
+
+.glass-input {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.glass-input:focus {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(56, 189, 248, 0.4);
+  box-shadow:
+    inset 0 1px 2px rgba(0, 0, 0, 0.15),
+    0 0 20px rgba(56, 189, 248, 0.1);
+}
+
+.glass-btn {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 0.5px 0 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.glass-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow:
+    inset 0 0.5px 0 0 rgba(255, 255, 255, 0.15),
+    0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Specular highlight shimmer for glass */
+.glass-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-shine::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.06) 0%,
+    rgba(255, 255, 255, 0.02) 40%,
+    transparent 100%
+  );
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Glass backdrop overlay */
+.glass-overlay {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(30px) saturate(150%);
+  -webkit-backdrop-filter: blur(30px) saturate(150%);
+}
+
+/* Liquid glass pill / tag */
+.glass-pill {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 0.5px 0 0 rgba(255, 255, 255, 0.08);
+}
+
+/* Shadcn UI Variables */
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 84% 4.9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 94.1%;
+  }
+}
+
+/* Follow System Styles */
+.btn-follow {
+  background: var(--brand-primary);
+  color: var(--text-on-brand);
+  border-radius: var(--radius-sm);
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+}
+
+.btn-following {
+  background: transparent;
+  border: 1px solid var(--border-default);
+  color: var(--text-primary);
+}
+
+.btn-following:hover {
+  background: var(--semantic-danger-dim);
+  border-color: var(--semantic-danger);
+  color: var(--semantic-danger);
+}
+
+.btn-connected {
+  background: var(--semantic-success-dim);
+  border: 1px solid var(--semantic-success-border);
+  color: var(--semantic-success);
+}
+
+/* Connection badge */
+.connected-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  background: rgba(0,212,170,0.1);
+  border: 1px solid rgba(0,212,170,0.2);
+  border-radius: var(--radius-full);
+  color: var(--semantic-success);
+  font-size: var(--font-xs);
+  font-family: 'Space Mono', monospace;
+}
+
+/* Activity feed item */
+.feed-item {
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-bottom: 1px solid var(--border-subtle);
+  transition: var(--transition-fast);
+}
+.feed-item:hover {
+  background: var(--surface-elevated);
+}
+
+/* Network stats bar */
+.network-stats {
+  display: flex;
+  gap: var(--space-6);
+  font-family: 'Space Mono', monospace;
+}
+.network-stats span {
+  color: var(--text-secondary);
+  font-size: var(--font-sm);
+}
+.network-stats strong {
+  color: var(--brand-primary);
+  font-size: var(--font-lg);
+}
+
+/* Profile follow bar */
+.profile-follow-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  margin: var(--space-4) 0;
+}
+
+/* Suggestion reason badge */
+.suggestion-reason {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  background: var(--brand-primary-dim);
+  color: var(--brand-primary);
+  border: 1px solid var(--brand-primary-border);
+}

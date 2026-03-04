@@ -1,0 +1,368 @@
+"use client";
+
+import { useEffect, useState, useMemo } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import Particles, { initParticlesEngine } from "@tsparticles/react";
+import { loadSlim } from "@tsparticles/slim";
+import CountUp from "react-countup";
+import Link from "next/link";
+import Image from "next/image";
+import dynamic from "next/dynamic";
+import { ArrowRight, Search, Zap, Shield, Sparkles, BookOpen, Users, Star, Calendar } from "lucide-react";
+import HoverFooter from "@/components/ui/hover-footer-demo";
+
+const AnimatedShaderBackground = dynamic(() => import("@/components/ui/animated-shader-background"), { ssr: false });
+
+export default function LandingPage() {
+  const [init, setInit] = useState(false);
+
+  useEffect(() => {
+    initParticlesEngine(async (engine) => {
+      await loadSlim(engine);
+    }).then(() => {
+      setInit(true);
+    });
+  }, []);
+
+  const particlesOptions = useMemo(() => ({
+    fullScreen: { enable: false, zIndex: 0 },
+    background: { color: { value: "transparent" } },
+    fpsLimit: 120,
+    interactivity: {
+      events: {
+        onHover: { enable: true, mode: "repulse" },
+      },
+      modes: {
+        repulse: { distance: 100, duration: 0.4 },
+      },
+    },
+    particles: {
+      color: { value: ["#ffffff", "#38bdf8"] },
+      links: {
+        color: "#ffffff",
+        distance: 150,
+        enable: true,
+        opacity: 0.1,
+        width: 1,
+      },
+      move: {
+        direction: "none" as const,
+        enable: true,
+        outModes: { default: "bounce" as const },
+        random: true,
+        speed: 0.8,
+        straight: false,
+      },
+      number: {
+        density: { enable: true, area: 800 },
+        value: 80,
+      },
+      opacity: { value: 0.3 },
+      shape: { type: "circle" },
+      size: { value: { min: 1, max: 3 } },
+    },
+    detectRetina: true,
+  }), []);
+
+  const { scrollYProgress } = useScroll();
+  const y = useTransform(scrollYProgress, [0, 1], [0, -50]);
+
+  return (
+    <main className="flex min-h-screen flex-col pt-16 font-sans overflow-hidden relative">
+
+      {/* Global Animated Shader Background - covers entire page */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <AnimatedShaderBackground />
+      </div>
+
+      {/* SECTION 1 - HERO */}
+      <section className="relative w-full min-h-screen flex items-center justify-center px-4 py-24 border-b border-[#2d7890] overflow-hidden">
+
+        {/* Particles overlay - more subtle */}
+        <div className="absolute inset-0 pointer-events-auto z-[1] overflow-hidden opacity-40">
+          {init && <Particles id="tsparticles" options={particlesOptions} className="w-full h-full" />}
+        </div>
+
+        {/* Hero Content - Grid Layout */}
+        <div className="relative z-10 w-full max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            
+            {/* Left Column - Text Content */}
+            <div className="flex flex-col space-y-8">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/5 text-primary font-mono text-xs uppercase tracking-widest mb-8 shadow-[0_0_15px_rgba(56,189,248,0.1)]"
+          >
+            <Sparkles className="w-4 h-4" />
+            <span>The New Way to Learn</span>
+          </motion.div>
+
+          <h1 className="text-6xl md:text-8xl font-syne font-extrabold tracking-tight mb-6 leading-[1.1]">
+            <motion.span
+              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
+              className="block text-white"
+            >
+              Trade Skills.
+            </motion.span>
+            <motion.span
+              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
+              className="block bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary to-accent"
+            >
+              Not Money.
+            </motion.span>
+          </h1>
+
+          <motion.p
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6, duration: 1 }}
+            className="text-t2 text-lg md:text-xl max-w-2xl mb-12"
+          >
+            Join India’s smartest peer-to-peer learning network for college students. Teach what you know, learn what you don't. Completely free.
+          </motion.p>
+
+          <div className="flex flex-col sm:flex-row items-center gap-4 mb-16">
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7 }}>
+              <Link href="/register" className="group relative flex items-center gap-2 px-8 py-4 rounded-full bg-primary text-base font-sans font-bold text-lg hover:scale-105 hover:shadow-[0_0_30px_rgba(56,189,248,0.4)] transition-all  overflow-hidden">
+                <span className="relative z-10">Start Exchanging Skills</span>
+                <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
+                <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+              </Link>
+            </motion.div>
+
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8 }}>
+              <Link
+                href="#how-it-works"
+                className="group flex items-center gap-2 px-8 py-4 rounded-full border border-border text-t1 font-sans font-bold text-lg transition-all duration-200
+                  hover:border-primary/70 hover:bg-primary/10 hover:shadow-[0_0_24px_0_rgba(56,189,248,0.18)] focus:outline-none focus:ring-2 focus:ring-primary/30"
+                style={{
+                  backdropFilter: 'blur(12px) saturate(1.1)',
+                  WebkitBackdropFilter: 'blur(12px) saturate(1.1)',
+                  background: 'rgba(17,17,17,0.45)',
+                  border: '1.5px solid hsla(0, 16%, 32%, 0.10)'
+                }}
+              >
+                <span>See How It Works</span>
+              </Link>
+            </motion.div>
+          </div>
+
+          {/* Hero Illustration */}
+          <motion.div
+            initial={{ opacity: 0, y: 40, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ delay: 0.9, duration: 1, ease: "easeOut" }}
+            className="relative w-full max-w-4xl mx-auto"
+          >
+            <div className="relative w-full aspect-video rounded-3xl overflow-hidden border border-primary/20 shadow-[0_0_60px_rgba(56,189,248,0.15)]">
+              <Image
+                src="/images/hero/hero-illustration.png"
+                alt="Students collaborating and exchanging skills on YUNETRA platform"
+                fill
+                className="object-contain"
+                priority
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+              />
+            </div>
+            {/* Glow effect */}
+            <div className="absolute inset-0 bg-gradient-to-t from-primary/10 to-transparent blur-3xl -z-10" />
+          </motion.div>
+        </div>
+
+        {/* Floating Badges */}
+        {["React", "Figma", "DSA", "Node.js", "Python", "UI Design"].map((skill, i) => (
+          <motion.div
+            key={skill}
+            initial={{ opacity: 0, scale: 0, filter: "blur(0.5px)" }}
+            animate={{
+              opacity: 1,
+              scale: 1,
+              filter: "blur(0.5px)",
+              y: [0, -15, 0],
+            }}
+            whileHover={{
+              opacity: 1,
+              filter: "blur(0px)",
+              scale: 1.1,
+              transition: { duration: 0.3 }
+            }}
+            transition={{
+              opacity: { delay: 1 + i * 0.1 },
+              scale: { delay: 1 + i * 0.1, type: "spring" },
+              y: { repeat: Infinity, duration: 3 + i % 3, ease: "easeInOut", delay: i * 0.2 }
+            }}
+            className="absolute hidden lg:flex items-center gap-2 px-4 py-2 bg-black/20 backdrop-blur-xl border border-white/10 hover:bg-black/30 hover:backdrop-blur-2xl hover:border-white/20 hover:shadow-[0_0_25px_rgba(255,255,255,0.2)] rounded-xl text-t1 font-mono text-sm z-0 cursor-pointer transition-all duration-300"
+            style={{
+              top: `${20 + (i * 12 % 60)}%`,
+              left: i % 2 === 0 ? `${10 + (i * 5 % 20)}%` : `auto`,
+              right: i % 2 !== 0 ? (skill === "Node.js" ? "5%" : `${10 + (i * 5 % 20)}%`) : `auto`,
+            }}
+          >
+            {/* Removed green dot */}
+            {skill}
+          </motion.div>
+        ))}
+      </section>
+
+      {/* SECTION 2 - LIVE STATS */}
+      <section className="w-full bg-black border-y border-[#2d7890] relative z-20">
+        <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#2d7890] to-transparent opacity-50" />
+        <div className="max-w-7xl mx-auto px-4 py-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-[#2d7890]">
+            {[
+              { label: "Students", value: 2400, suffix: "+" },
+              { label: "Skill Categories", value: 8, suffix: "" },
+              { label: "Average Rating", value: 4.8, suffix: "★", decimals: 1 },
+              { label: "Cost", value: 0, prefix: "₹" },
+            ].map((stat, i) => (
+              <div key={i} className="flex flex-col items-center justify-center text-center px-4">
+                <div className="text-4xl md:text-5xl font-syne font-extrabold text-white mb-2">
+                  {stat.prefix}
+                  <CountUp end={stat.value} decimals={stat.decimals || 0} duration={2.5} enableScrollSpy scrollSpyOnce />
+                  {stat.suffix}
+                </div>
+                <div className="text-t2 font-mono uppercase tracking-wider text-sm">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 3 - HOW IT WORKS */}
+      <section id="how-it-works" className="w-full py-32 px-4 relative z-10">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-20">
+            <h2 className="text-3xl md:text-5xl font-syne font-extrabold mb-4">Three steps to your next skill</h2>
+            <p className="text-t2 text-lg max-w-2xl mx-auto">Our unique credit system ensures fair exchanges and high-quality learning.</p>
+          </div>
+
+          <div className="relative grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Dotted Connection Line (Desktop) */}
+            <div className="hidden md:block absolute top-[100px] left-[15%] right-[15%] h-[2px] border-t-2 border-dotted border-t2/30 z-0" />
+
+            {[
+              { step: "01", title: "Teach a Skill", desc: "Share your knowledge in React, UI Design, or anything you excel at. Earn 1 Skill Credit per session.", icon: <BookOpen className="w-8 h-8 text-primary" /> },
+              { step: "02", title: "Find a Match", desc: "Browse students who want to learn what you teach, or find experts in the skills you want to learn.", icon: <Search className="w-8 h-8 text-warning" /> },
+              { step: "03", title: "Learn for Free", desc: "Spend your earned Skill Credits to book 1-on-1 sessions with verified student mentors.", icon: <Zap className="w-8 h-8 text-accent" /> },
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ delay: i * 0.2, duration: 0.6 }}
+                whileHover={{ y: -8 }}
+                className="relative z-10 bg-black/20 backdrop-blur-xl border border-white/10 rounded-3xl p-8 group overflow-hidden transition-all duration-500 hover:bg-black/30 hover:backdrop-blur-2xl hover:border-white/20 hover:shadow-[0_0_40px_rgba(255,255,255,0.1)] cursor-pointer"
+              >
+                {/* Liquid glass background effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-white/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                {/* Step number */}
+                <div className="absolute -top-4 -right-3 text-[7rem] leading-none font-mono font-extrabold text-white/[0.08] group-hover:text-primary/30 group-hover:drop-shadow-[0_0_10px_rgba(56,189,248,0.6)] transition-all duration-300 pointer-events-none select-none">{item.step}</div>
+                
+                {/* Icon container */}
+                <div className="relative z-10 w-16 h-16 rounded-2xl bg-white/5 backdrop-blur-md border border-white/20 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-white/10 group-hover:border-primary/40 group-hover:shadow-[0_0_25px_rgba(56,189,248,0.6)] transition-all duration-300">
+                  {item.icon}
+                </div>
+                <h3 className="relative z-10 text-2xl font-syne font-bold mb-3 group-hover:text-white transition-colors duration-300">{item.title}</h3>
+                <p className="relative z-10 text-t2 leading-relaxed group-hover:text-white/80 transition-colors duration-300">{item.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 4 - FEATURES GRID */}
+      <section className="w-full py-32 px-4 bg-transparent relative border-y border-[#2d7890] z-10">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-20">
+            <h2 className="text-3xl md:text-5xl font-syne font-extrabold mb-4">Built for Serious Growth.</h2>
+            <p className="text-t2 text-lg max-w-2xl mx-auto">Everything you need to upskill without spending a single rupee.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {[
+              { title: "Smart Matching Engine", desc: "Instantly find students whose 'Want to Learn' matches your 'Can Teach' and vice versa.", icon: <Search className="w-6 h-6" />, color: "green" },
+              { title: "Skill Verification System", desc: "Take technical quizzes to earn verified badges. Stand out and build trust as a mentor.", icon: <Shield className="w-6 h-6" />, color: "purple" },
+              { title: "Reputation & Badges", desc: "Complete sessions to level up your mentor status. Unlock exclusive community perks.", icon: <Star className="w-6 h-6" />, color: "yellow" },
+              { title: "Seamless Scheduling", desc: "Book, confirm, and dispute sessions easily. The credit exchange handles itself.", icon: <Calendar className="w-6 h-6" />, color: "red" },
+            ].map((feat, i) => (
+              <div
+                key={i}
+                className={`group relative p-8 rounded-3xl bg-black/20 backdrop-blur-xl border border-white/10 overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:bg-black/30 hover:backdrop-blur-2xl hover:border-white/20 hover:shadow-[0_0_40px_rgba(255,255,255,0.1)] cursor-pointer`}
+              >
+                {/* Liquid glass background effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-white/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                {/* Animated glow effect */}
+                <div className={`absolute -inset-px opacity-0 group-hover:opacity-20 transition-all duration-500 blur-2xl rounded-3xl ${feat.color === 'green' ? 'bg-primary' : feat.color === 'purple' ? 'bg-accent' : feat.color === 'yellow' ? 'bg-warning' : 'bg-danger'
+                  }`} />
+                  
+                {/* Liquid ripple effect */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-700">
+                  <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/5 to-transparent -skew-x-12 animate-pulse" />
+                </div>
+                <div className="relative z-10">
+                  <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-6 bg-white/5 backdrop-blur-md border border-white/20 ${feat.color === 'green' ? 'text-primary group-hover:shadow-[0_0_25px_rgba(56,189,248,0.6)] group-hover:border-primary/40' :
+                    feat.color === 'purple' ? 'text-accent group-hover:shadow-[0_0_25px_rgba(99,102,241,0.6)] group-hover:border-accent/40' :
+                      feat.color === 'yellow' ? 'text-warning group-hover:shadow-[0_0_25px_rgba(245,158,11,0.6)] group-hover:border-warning/40' :
+                        'text-danger group-hover:shadow-[0_0_25px_rgba(244,63,94,0.6)] group-hover:border-danger/40'
+                    } transition-all duration-300 group-hover:scale-110 group-hover:bg-white/10`}>
+                    {feat.icon}
+                  </div>
+                  <h3 className="text-xl font-syne font-bold mb-3 group-hover:text-white transition-colors duration-300">{feat.title}</h3>
+                  <p className="text-t2 leading-relaxed mb-6 group-hover:text-white/80 transition-colors duration-300">{feat.desc}</p>
+                  <div className={`text-sm font-mono font-bold flex items-center gap-2 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 ${feat.color === 'green' ? 'text-primary group-hover:drop-shadow-[0_0_8px_rgba(56,189,248,0.8)]' : feat.color === 'purple' ? 'text-accent group-hover:drop-shadow-[0_0_8px_rgba(99,102,241,0.8)]' : feat.color === 'yellow' ? 'text-warning group-hover:drop-shadow-[0_0_8px_rgba(245,158,11,0.8)]' : 'text-danger group-hover:drop-shadow-[0_0_8px_rgba(244,63,94,0.8)]'
+                    }`}>
+                    Explore Feature <ArrowRight className="w-4 h-4 group-hover:animate-pulse" />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 5 - SOCIAL PROOF */}
+      <section className="w-full py-32 px-4 relative overflow-hidden z-10">
+        <div className="max-w-7xl mx-auto text-center">
+          <h2 className="text-3xl md:text-5xl font-syne font-extrabold mb-16">What the community says</h2>
+
+          <div className="flex flex-col md:flex-row justify-center items-center gap-6">
+            {[
+              { name: "Rahul Deshmukh", college: "VJTI Mumbai", text: "I traded my Python skills to learn UI Design from Ananya. My side projects look a thousand times better now.", rating: 5, offset: "translate-y-4" },
+              { name: "Ananya Sharma", college: "VIT Vellore", text: "Yunetra's verification system is amazing. Earning the 'React Mentor' badge got me 10 session requests in a week!", rating: 5, offset: "-translate-y-4 shadow-[0_0_50px_rgba(99,102,241,0.1)] border-accent/30 z-10" },
+              { name: "Karthik N.", college: "RVCE Bangalore", text: "The credit system forces you to share knowledge instead of just taking. It's the perfect ecosystem.", rating: 5, offset: "translate-y-4" },
+            ].map((review, i) => (
+              <div key={i} className={`group relative w-full max-w-sm p-8 rounded-3xl bg-black/20 backdrop-blur-xl border border-white/10 text-left ${review.offset} transition-all duration-500 hover:-translate-y-6 hover:bg-black/30 hover:backdrop-blur-2xl hover:border-white/20 hover:shadow-[0_0_40px_rgba(255,255,255,0.1)] cursor-pointer overflow-hidden`}>
+                {/* Liquid glass background effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-white/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                <div className="relative z-10">
+                  <div className="flex gap-1 mb-4 text-warning group-hover:drop-shadow-[0_0_8px_rgba(245,158,11,0.8)] transition-all duration-300">
+                  {[...Array(review.rating)].map((_, j) => <Star key={j} className="w-4 h-4 fill-current" />)}
+                </div>
+                  <p className="text-t1/90 italic mb-6 group-hover:text-white/90 transition-colors duration-300">"{review.text}"</p>
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-primary to-accent p-[1px] group-hover:scale-110 transition-transform duration-300">
+                      <div className="w-full h-full bg-white/5 backdrop-blur-md rounded-full flex items-center justify-center font-syne font-bold text-sm group-hover:bg-white/10 transition-all duration-300">{review.name[0]}</div>
+                  </div>
+                    <div>
+                      <h4 className="font-syne font-bold font-sm group-hover:text-white transition-colors duration-300">{review.name}</h4>
+                      <p className="text-xs text-t2 font-sans group-hover:text-white/70 transition-colors duration-300">{review.college}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <div className="w-full mt-20">
+        <HoverFooter />
+      </div>
+    </main>
+  );
+}

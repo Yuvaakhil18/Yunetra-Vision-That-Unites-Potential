@@ -1,0 +1,230 @@
+/* ============================================
+   YUNETRA DESIGN TOKENS
+   Clean & Futuristic — v2.0
+   ============================================ */
+
+:root {
+
+  /* ── SURFACE SCALE ──────────────────────────
+     Each level should be visually distinct.
+     Never use bg on a card. Never use card on
+     elevated. Strict hierarchy enforced.
+  */
+  --surface-base:     #000000;  /* page background */
+  --surface-subtle:   #080808;  /* hero, alt sections */
+  --surface-muted:    #0f0f0f;  /* section dividers */
+  --surface-card:     #111111;  /* all card backgrounds */
+  --surface-elevated: #161616;  /* modals, dropdowns, hover states */
+  --surface-overlay:  rgba(0,0,0,0.85); /* modal backdrops */
+
+  /* ── BRAND COLORS ───────────────────────────
+     Primary = Ice Blue (trust, tech, precision)
+     Accent  = Electric Indigo (creativity, depth)
+     These two must never compete. Primary owns
+     interactive elements. Accent owns decorative.
+  */
+  --brand-primary:       #38bdf8;
+  --brand-primary-hover: #0ea5e9;
+  --brand-primary-dim:   rgba(56,189,248,0.15);
+  --brand-primary-border:rgba(56,189,248,0.2);
+
+  --brand-accent:        #6366f1;
+  --brand-accent-hover:  #4f46e5;
+  --brand-accent-dim:    rgba(99,102,241,0.15);
+  --brand-accent-border: rgba(99,102,241,0.2);
+
+  /* ── SEMANTIC COLORS ────────────────────────
+     Never use brand colors for semantic meaning.
+     Use these exclusively for state communication.
+  */
+  --semantic-success:        #00d4aa;
+  --semantic-success-dim:    rgba(0,212,170,0.12);
+  --semantic-success-border: rgba(0,212,170,0.2);
+
+  --semantic-warning:        #f59e0b;
+  --semantic-warning-dim:    rgba(245,158,11,0.12);
+  --semantic-warning-border: rgba(245,158,11,0.2);
+
+  --semantic-danger:         #f43f5e;
+  --semantic-danger-dim:     rgba(244,63,94,0.12);
+  --semantic-danger-border:  rgba(244,63,94,0.2);
+
+  --semantic-info:           #38bdf8;
+  --semantic-info-dim:       rgba(56,189,248,0.12);
+
+  /* ── SPECIAL PURPOSE ────────────────────────
+     One-off colors for specific UI contexts.
+     Document the exact usage for each.
+  */
+  --prize-color:      #f59e0b;  /* Problem Desk prize amounts only */
+  --prize-gradient:   linear-gradient(135deg, #f59e0b, #ef4444);
+
+  --rank-gold:        linear-gradient(135deg, #f59e0b, #fbbf24);
+  --rank-silver:      linear-gradient(135deg, #94a3b8, #cbd5e1);
+  --rank-bronze:      linear-gradient(135deg, #b45309, #d97706);
+
+  --credit-color:     #38bdf8;  /* skill credits display only */
+  --session-pending:  #f59e0b;
+  --session-confirmed:#38bdf8;
+  --session-completed:#00d4aa;
+  --session-cancelled:#f43f5e;
+
+  /* ── TEXT SCALE ─────────────────────────────
+     4-level hierarchy. Use the right level.
+     primary   = headings, important content
+     secondary = body text, descriptions
+     tertiary  = labels, captions, metadata
+     disabled  = placeholders, empty states
+  */
+  --text-primary:   #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-tertiary:  #475569;
+  --text-disabled:  #334155;
+  --text-inverse:   #000000;  /* text on light backgrounds */
+  --text-on-brand:  #000000;  /* text on primary buttons */
+
+  /* ── BORDER SCALE ───────────────────────────
+     Use subtle for most borders.
+     Use default for interactive elements.
+     Use strong for focused/active states.
+  */
+  --border-subtle:  rgba(255,255,255,0.06);
+  --border-default: rgba(255,255,255,0.1);
+  --border-strong:  rgba(255,255,255,0.2);
+  --border-brand:   rgba(56,189,248,0.3);
+  --border-focus:   rgba(56,189,248,0.5);
+
+  /* ── ELEVATION / SHADOW ─────────────────────
+     Shadows define Z-axis depth.
+     Never use colored shadows for non-brand elements.
+  */
+  --shadow-sm:      0 1px 3px rgba(0,0,0,0.4);
+  --shadow-md:      0 4px 16px rgba(0,0,0,0.5);
+  --shadow-lg:      0 8px 32px rgba(0,0,0,0.6);
+  --shadow-xl:      0 20px 60px rgba(0,0,0,0.7);
+
+  --glow-primary:   0 0 20px rgba(56,189,248,0.2),
+                    0 0 60px rgba(56,189,248,0.1);
+  --glow-accent:    0 0 20px rgba(99,102,241,0.2),
+                    0 0 60px rgba(99,102,241,0.1);
+  --glow-success:   0 0 20px rgba(0,212,170,0.2);
+  --glow-sm:        0 0 15px rgba(56,189,248,0.15);
+
+  /* ── GRADIENTS ──────────────────────────────
+     Named by PURPOSE not by color.
+     Never create one-off gradients in components.
+  */
+  --gradient-brand:      linear-gradient(135deg, #38bdf8 0%, #6366f1 100%);
+  --gradient-hero-text:  linear-gradient(135deg, #f1f5f9 0%, #38bdf8 60%, #6366f1 100%);
+  --gradient-card-top:   linear-gradient(90deg, #38bdf8, #6366f1);
+  --gradient-card-top-2: linear-gradient(90deg, #6366f1, #f43f5e);
+  --gradient-success:    linear-gradient(135deg, #00d4aa, #38bdf8);
+  --gradient-warning:    linear-gradient(135deg, #f59e0b, #ef4444);
+  --gradient-surface:    linear-gradient(180deg, #080808 0%, #000000 100%);
+
+  /* ── AVATAR POOL ────────────────────────────
+     8 gradients for user avatars.
+     Assigned by user ID mod 8.
+  */
+  --avatar-0: linear-gradient(135deg, #38bdf8, #6366f1);
+  --avatar-1: linear-gradient(135deg, #6366f1, #f43f5e);
+  --avatar-2: linear-gradient(135deg, #00d4aa, #38bdf8);
+  --avatar-3: linear-gradient(135deg, #f59e0b, #ef4444);
+  --avatar-4: linear-gradient(135deg, #38bdf8, #00d4aa);
+  --avatar-5: linear-gradient(135deg, #a78bfa, #6366f1);
+  --avatar-6: linear-gradient(135deg, #f43f5e, #f59e0b);
+  --avatar-7: linear-gradient(135deg, #6366f1, #38bdf8);
+
+  /* ── REPUTATION RINGS ───────────────────────
+     One color per reputation dimension.
+     These must be visually distinct at small sizes.
+  */
+  --ring-skill-impact:    #38bdf8;
+  --ring-collaboration:   #6366f1;
+  --ring-knowledge:       #00d4aa;
+  --ring-reliability:     #f59e0b;
+
+  /* ── SPACING SCALE ──────────────────────────
+     Consistent spacing prevents visual chaos.
+  */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  /* ── RADIUS SCALE ───────────────────────────
+     Sharp = professional/futuristic
+     Never use rounded-full on large elements
+  */
+  --radius-sm:   4px;   /* buttons, tags */
+  --radius-md:   8px;   /* inputs, small cards */
+  --radius-lg:   12px;  /* cards */
+  --radius-xl:   16px;  /* large cards, panels */
+  --radius-2xl:  20px;  /* modals */
+  --radius-full: 9999px; /* avatars, pills ONLY */
+
+  /* ── TYPOGRAPHY SCALE ───────────────────────
+     Font sizes follow a strict ratio.
+     Never use arbitrary sizes in components.
+  */
+  --font-xs:   0.7rem;    /* 11.2px — labels, badges */
+  --font-sm:   0.8rem;    /* 12.8px — captions, metadata */
+  --font-base: 0.9rem;    /* 14.4px — body text */
+  --font-md:   1rem;      /* 16px   — default */
+  --font-lg:   1.1rem;    /* 17.6px — emphasis */
+  --font-xl:   1.25rem;   /* 20px   — card titles */
+  --font-2xl:  1.5rem;    /* 24px   — section headings */
+  --font-3xl:  2rem;      /* 32px   — page headings */
+  --font-4xl:  2.5rem;    /* 40px   — display */
+  --font-5xl:  clamp(2.5rem, 5vw, 4rem);    /* large display */
+  --font-hero: clamp(3.5rem, 8vw, 7rem);    /* hero only */
+
+  /* ── TYPOGRAPHY WEIGHTS ─────────────────────*/
+  --weight-normal:   400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+  --weight-black:    800;
+
+  /* ── LETTER SPACING ─────────────────────────*/
+  --tracking-tight:  -0.03em;  /* hero headlines */
+  --tracking-normal: -0.01em;  /* headings */
+  --tracking-wide:   0.05em;   /* body */
+  --tracking-wider:  0.1em;    /* labels */
+  --tracking-widest: 0.15em;   /* caps labels, tags */
+
+  /* ── LINE HEIGHT ────────────────────────────*/
+  --leading-none:   0.95;  /* hero headlines */
+  --leading-tight:  1.1;   /* headings */
+  --leading-snug:   1.3;   /* subheadings */
+  --leading-normal: 1.6;   /* body text */
+  --leading-relaxed:1.75;  /* descriptions */
+
+  /* ── TRANSITIONS ────────────────────────────
+     Consistent motion prevents janky UI.
+  */
+  --transition-fast:   all 0.15s ease;
+  --transition-base:   all 0.25s ease;
+  --transition-slow:   all 0.4s ease;
+  --transition-spring: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ── Z-INDEX SCALE ──────────────────────────
+     Document every z-index. Never use arbitrary values.
+  */
+  --z-base:     0;
+  --z-raised:   10;
+  --z-dropdown: 100;
+  --z-sticky:   200;
+  --z-overlay:  300;
+  --z-modal:    400;
+  --z-toast:    500;
+  --z-cursor:   9999;
+}
