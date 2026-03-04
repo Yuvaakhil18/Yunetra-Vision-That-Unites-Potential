@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import connectToDatabase from '@/lib/mongodb';
 import User from '@/models/User';
+export const dynamic = 'force-dynamic';
 
 // GET /api/follow/suggestions - Get follow suggestions
 export async function GET(req: Request) {
@@ -31,17 +32,17 @@ export async function GET(req: Request) {
         // 1. Users who can teach skills you want to learn (highest priority)
         if (skillsToLearn.length > 0) {
             const skillTeachers = await User.find({
-                _id: { 
+                _id: {
                     $ne: currentUserId,
                     $nin: [...following, ...blocked]
                 },
                 skillsTeach: { $in: skillsToLearn }
             })
-            .select('name email college skillsTeach rating totalSessions')
-            .limit(5);
+                .select('name email college skillsTeach rating totalSessions')
+                .limit(5);
 
             skillTeachers.forEach((user: any) => {
-                const matchingSkills = user.skillsTeach.filter((skill: string) => 
+                const matchingSkills = user.skillsTeach.filter((skill: string) =>
                     skillsToLearn.includes(skill)
                 );
                 if (matchingSkills.length > 0 && !suggestionIds.has(user._id.toString())) {
@@ -57,14 +58,14 @@ export async function GET(req: Request) {
         // 2. Users from same college
         if (currentUser.college && suggestions.length < 10) {
             const sameCollegeUsers = await User.find({
-                _id: { 
+                _id: {
                     $ne: currentUserId,
                     $nin: [...following, ...blocked, ...Array.from(suggestionIds)]
                 },
                 college: currentUser.college
             })
-            .select('name email college skillsTeach rating totalSessions')
-            .limit(10 - suggestions.length);
+                .select('name email college skillsTeach rating totalSessions')
+                .limit(10 - suggestions.length);
 
             sameCollegeUsers.forEach((user: any) => {
                 if (!suggestionIds.has(user._id.toString())) {
@@ -88,7 +89,7 @@ export async function GET(req: Request) {
                 if (user.following) {
                     user.following.forEach((friendId: any) => {
                         const friendIdStr = friendId.toString();
-                        if (friendIdStr !== currentUserId && 
+                        if (friendIdStr !== currentUserId &&
                             !following.some((id: any) => id.toString() === friendIdStr) &&
                             !blocked.some((id: any) => id.toString() === friendIdStr) &&
                             !suggestionIds.has(friendIdStr)) {
@@ -123,16 +124,16 @@ export async function GET(req: Request) {
         // 4. Top rated users not already followed
         if (suggestions.length < 10) {
             const topRated = await User.find({
-                _id: { 
+                _id: {
                     $ne: currentUserId,
                     $nin: [...following, ...blocked, ...Array.from(suggestionIds)]
                 },
                 rating: { $gte: 4 },
                 totalSessions: { $gte: 5 }
             })
-            .select('name email college skillsTeach rating totalSessions')
-            .sort({ rating: -1, totalSessions: -1 })
-            .limit(10 - suggestions.length);
+                .select('name email college skillsTeach rating totalSessions')
+                .sort({ rating: -1, totalSessions: -1 })
+                .limit(10 - suggestions.length);
 
             topRated.forEach((user: any) => {
                 if (!suggestionIds.has(user._id.toString())) {

@@ -3,11 +3,12 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import dbConnect from '@/lib/mongodb';
 import ArenaChallenge from '@/models/ArenaChallenge';
+export const dynamic = 'force-dynamic';
 
 export async function GET(request: NextRequest) {
     try {
         await dbConnect();
-        
+
         const searchParams = request.nextUrl.searchParams;
         const category = searchParams.get('category');
         const difficulty = searchParams.get('difficulty');
@@ -16,15 +17,15 @@ export async function GET(request: NextRequest) {
 
         // Build filter query
         const filter: any = { status };
-        
+
         if (category && category !== 'all') {
             filter.category = category;
         }
-        
+
         if (difficulty) {
             filter.difficulty = difficulty;
         }
-        
+
         if (search) {
             filter.$or = [
                 { title: { $regex: search, $options: 'i' } },

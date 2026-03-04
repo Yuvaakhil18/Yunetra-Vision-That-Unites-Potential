@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import connectToDatabase from '@/lib/mongodb';
 import User from '@/models/User';
+export const dynamic = 'force-dynamic';
 
 // GET /api/follow/activity-feed - Get activity feed from followed users
 export async function GET(req: Request) {
@@ -22,15 +23,15 @@ export async function GET(req: Request) {
         }
 
         const following = currentUser.following || [];
-        
+
         // Get all users the current user follows, excluding blocked users
         const followedUsers = await User.find({
-            _id: { 
+            _id: {
                 $in: following,
                 $nin: currentUser.blocked || []
             }
         })
-        .select('activityFeed name');
+            .select('activityFeed name');
 
         // Merge all activity feeds
         const allActivities: any[] = [];
@@ -68,8 +69,8 @@ export async function GET(req: Request) {
         // Add related user names
         const enrichedActivities = sortedActivities.map(activity => ({
             ...activity,
-            relatedUserName: activity.relatedUser 
-                ? relatedUsersMap.get(activity.relatedUser.toString()) 
+            relatedUserName: activity.relatedUser
+                ? relatedUsersMap.get(activity.relatedUser.toString())
                 : null
         }));
 

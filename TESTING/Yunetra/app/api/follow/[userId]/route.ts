@@ -4,6 +4,7 @@ import { authOptions } from '@/lib/auth';
 import connectToDatabase from '@/lib/mongodb';
 import User from '@/models/User';
 import mongoose from 'mongoose';
+export const dynamic = 'force-dynamic';
 
 // POST /api/follow/:userId - Follow a user
 export async function POST(req: Request, { params }: { params: { userId: string } }) {
@@ -90,9 +91,9 @@ export async function POST(req: Request, { params }: { params: { userId: string 
         await currentUser.save({ validateModifiedOnly: true });
         await targetUser.save({ validateModifiedOnly: true });
 
-        return NextResponse.json({ 
-            following: true, 
-            isConnected 
+        return NextResponse.json({
+            following: true,
+            isConnected
         }, { status: 200 });
 
     } catch (error: any) {
@@ -139,9 +140,9 @@ export async function DELETE(req: Request, { params }: { params: { userId: strin
         await currentUser.save({ validateModifiedOnly: true });
         await targetUser.save({ validateModifiedOnly: true });
 
-        return NextResponse.json({ 
-            following: false, 
-            isConnected: false 
+        return NextResponse.json({
+            following: false,
+            isConnected: false
         }, { status: 200 });
 
     } catch (error: any) {

@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { spendCredits } from '@/lib/credits';
+export const dynamic = 'force-dynamic';
 
 export async function POST(req: Request) {
     try {

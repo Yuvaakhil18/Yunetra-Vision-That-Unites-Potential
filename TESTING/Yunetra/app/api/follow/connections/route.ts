@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import connectToDatabase from '@/lib/mongodb';
 import User from '@/models/User';
+export const dynamic = 'force-dynamic';
 
 // GET /api/follow/connections - Get mutual follows (connected users)
 export async function GET(req: Request) {
@@ -24,16 +25,16 @@ export async function GET(req: Request) {
         // Find users who are in both following and followers arrays (mutual follow)
         const following = currentUser.following || [];
         const followers = currentUser.followers || [];
-        
-        const connectionIds = following.filter((id: any) => 
+
+        const connectionIds = following.filter((id: any) =>
             followers.some((fid: any) => fid.toString() === id.toString())
         );
 
         const connections = await User.find({
             _id: { $in: connectionIds }
         })
-        .select('name email college year branch skillsTeach rating totalSessions badges followersCount followingCount')
-        .sort({ createdAt: -1 });
+            .select('name email college year branch skillsTeach rating totalSessions badges followersCount followingCount')
+            .sort({ createdAt: -1 });
 
         return NextResponse.json({
             connections: connections.map((user: any) => ({

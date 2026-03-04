@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import connectToDatabase from '@/lib/mongodb';
 import User from '@/models/User';
+export const dynamic = 'force-dynamic';
 
 // GET /api/follow/following - Get users current user follows
 export async function GET(req: Request) {
@@ -28,9 +29,9 @@ export async function GET(req: Request) {
         const following = await User.find({
             _id: { $in: currentUser.following || [] }
         })
-        .select('name email college year branch skillsTeach rating totalSessions badges')
-        .skip(skip)
-        .limit(limit);
+            .select('name email college year branch skillsTeach rating totalSessions badges')
+            .skip(skip)
+            .limit(limit);
 
         // Add isFollowingBack field
         const followingWithStatus = following.map((user: any) => ({

@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { getBalanceAndHistory } from '@/lib/credits';
+export const dynamic = 'force-dynamic';
 
 export async function GET(req: Request) {
     try {

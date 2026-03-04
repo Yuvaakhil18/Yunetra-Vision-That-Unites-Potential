@@ -4,6 +4,7 @@ import { authOptions } from '@/lib/auth';
 import connectToDatabase from '@/lib/mongodb';
 import User from '@/models/User';
 import { calculateCompatibility } from '@/lib/matchingAlgorithm';
+export const dynamic = 'force-dynamic';
 
 export async function GET(req: Request) {
     try {
@@ -30,7 +31,7 @@ export async function GET(req: Request) {
 
         // Fetch all OTHER users
         const otherUsers = await User.find({ _id: { $ne: currentUser._id } }).lean();
-        
+
         console.log(`Found ${otherUsers.length} other users for matching`);
         console.log(`Current user skills: teach=${currentUser.skillsTeach}, learn=${currentUser.skillsLearn}`);
 
@@ -41,7 +42,7 @@ export async function GET(req: Request) {
                 if (!otherUser.skillsTeach) otherUser.skillsTeach = [];
                 if (!otherUser.skillsLearn) otherUser.skillsLearn = [];
                 if (!otherUser.badges) otherUser.badges = [];
-                
+
                 return calculateCompatibility(
                     {
                         _id: currentUser._id.toString(),

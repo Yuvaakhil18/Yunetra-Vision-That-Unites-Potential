@@ -5,6 +5,7 @@ import connectDB from "@/lib/mongodb";
 import Resource from "@/models/Resource";
 import User from "@/models/User";
 import mongoose from "mongoose";
+export const dynamic = 'force-dynamic';
 
 export async function GET(req: Request) {
     try {
@@ -92,12 +93,12 @@ export async function POST(req: Request) {
                 description: `Shared ${title}`,
                 createdAt: new Date()
             });
-            
+
             // Keep max 100 entries
             if (user.activityFeed.length > 100) {
                 user.activityFeed = user.activityFeed.slice(-100);
             }
-            
+
             await user.save();
         }
 

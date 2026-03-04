@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import connectToDatabase from '@/lib/mongodb';
 import User from '@/models/User';
+export const dynamic = 'force-dynamic';
 
 // POST /api/follow/block/:userId - Block a user
 export async function POST(req: Request, { params }: { params: { userId: string } }) {
@@ -38,7 +39,7 @@ export async function POST(req: Request, { params }: { params: { userId: string 
         if (currentUser.following?.includes(targetUserId)) {
             currentUser.following = currentUser.following.filter((id: any) => id.toString() !== targetUserId);
             currentUser.followingCount = Math.max(0, (currentUser.followingCount || 0) - 1);
-            
+
             targetUser.followers = targetUser.followers?.filter((id: any) => id.toString() !== currentUserId);
             targetUser.followersCount = Math.max(0, (targetUser.followersCount || 0) - 1);
         }
@@ -46,7 +47,7 @@ export async function POST(req: Request, { params }: { params: { userId: string 
         if (currentUser.followers?.includes(targetUserId)) {
             currentUser.followers = currentUser.followers.filter((id: any) => id.toString() !== targetUserId);
             currentUser.followersCount = Math.max(0, (currentUser.followersCount || 0) - 1);
-            
+
             targetUser.following = targetUser.following?.filter((id: any) => id.toString() !== currentUserId);
             targetUser.followingCount = Math.max(0, (targetUser.followingCount || 0) - 1);
         }

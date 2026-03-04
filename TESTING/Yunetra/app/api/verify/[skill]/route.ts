@@ -4,6 +4,7 @@ import { authOptions } from '@/lib/auth';
 import connectToDatabase from '@/lib/mongodb';
 import Question from '@/models/Question';
 import User from '@/models/User';
+export const dynamic = 'force-dynamic';
 
 export async function GET(
     req: Request,

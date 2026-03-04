@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import dbConnect from '@/lib/mongodb';
 import ArenaSubmission from '@/models/ArenaSubmission';
+export const dynamic = 'force-dynamic';
 
 export async function GET(request: NextRequest) {
     try {
@@ -15,9 +16,9 @@ export async function GET(request: NextRequest) {
         }
 
         await dbConnect();
-        
+
         const userId = (session.user as any).id;
-        
+
         const submissions = await ArenaSubmission.find({ submittedBy: userId })
             .populate('challenge', 'title organization category deadline prizeType prizeAmount internshipDetails')
             .populate('teamMembers', 'name email college')
