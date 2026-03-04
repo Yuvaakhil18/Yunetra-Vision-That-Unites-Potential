@@ -93,11 +93,11 @@ export default function RegisterPage() {
                         </div>
                     </div>
 
-                    <div className="mb-10">
-                        <h1 className="text-4xl font-syne font-extrabold text-white mb-2 leading-tight">
+                    <div className="mb-8 md:mb-10">
+                        <h1 className="text-3xl md:text-4xl font-syne font-extrabold text-white mb-2 leading-tight">
                             {step === 1 ? "Start Your Journey" : "Academic Profile"}
                         </h1>
-                        <p className="text-t2 text-lg">{step === 1 ? "Create your account to start trading skills." : "Help us match you with the right mentors."}</p>
+                        <p className="text-t2 text-base md:text-lg">{step === 1 ? "Create your account to start trading skills." : "Help us match you with the right mentors."}</p>
                     </div>
 
                     <form onSubmit={handleSubmit} className="space-y-6">
@@ -154,7 +154,7 @@ export default function RegisterPage() {
                                         </div>
                                     </div>
 
-                                    <div className="grid grid-cols-2 gap-4">
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                         <div className="space-y-2">
                                             <label className="text-xs font-mono uppercase tracking-widest text-t2 ml-1">Current Year</label>
                                             <div className="relative group">

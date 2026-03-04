@@ -95,7 +95,7 @@ export default function LandingPage() {
             <span>The New Way to Learn</span>
           </motion.div>
 
-          <h1 className="text-6xl md:text-8xl font-syne font-extrabold tracking-tight mb-6 leading-[1.1]">
+          <h1 className="text-4xl sm:text-6xl md:text-8xl font-syne font-extrabold tracking-tight mb-6 leading-[1.1]">
             <motion.span
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
               className="block text-white"
@@ -112,7 +112,7 @@ export default function LandingPage() {
 
           <motion.p
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6, duration: 1 }}
-            className="text-t2 text-lg md:text-xl max-w-2xl mb-12"
+            className="text-t2 text-base sm:text-lg md:text-xl max-w-2xl mb-12 px-2"
           >
             Join India’s smartest peer-to-peer learning network for college students. Teach what you know, learn what you don't. Completely free.
           </motion.p>
@@ -207,9 +207,9 @@ export default function LandingPage() {
       {/* SECTION 3 - HOW IT WORKS */}
       <section id="how-it-works" className="w-full py-32 px-4 relative z-10">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-20">
-            <h2 className="text-3xl md:text-5xl font-syne font-extrabold mb-4">Three steps to your next skill</h2>
-            <p className="text-t2 text-lg max-w-2xl mx-auto">Our unique credit system ensures fair exchanges and high-quality learning.</p>
+          <div className="text-center mb-12 md:mb-20">
+            <h2 className="text-3xl md:text-5xl font-syne font-extrabold mb-4 px-2">Three steps to your next skill</h2>
+            <p className="text-t2 text-base md:text-lg max-w-2xl mx-auto px-4">Our unique credit system ensures fair exchanges and high-quality learning.</p>
           </div>
 
           <div className="relative grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -232,10 +232,10 @@ export default function LandingPage() {
               >
                 {/* Liquid glass background effect */}
                 <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-white/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                
+
                 {/* Step number */}
                 <div className="absolute -top-4 -right-3 text-[7rem] leading-none font-mono font-extrabold text-white/[0.08] group-hover:text-primary/30 group-hover:drop-shadow-[0_0_10px_rgba(56,189,248,0.6)] transition-all duration-300 pointer-events-none select-none">{item.step}</div>
-                
+
                 {/* Icon container */}
                 <div className="relative z-10 w-16 h-16 rounded-2xl bg-white/5 backdrop-blur-md border border-white/20 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-white/10 group-hover:border-primary/40 group-hover:shadow-[0_0_25px_rgba(56,189,248,0.6)] transition-all duration-300">
                   {item.icon}
@@ -251,9 +251,9 @@ export default function LandingPage() {
       {/* SECTION 4 - FEATURES GRID */}
       <section className="w-full py-32 px-4 bg-transparent relative border-y border-[#063744] z-10">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-20">
-            <h2 className="text-3xl md:text-5xl font-syne font-extrabold mb-4">Built for Serious Growth.</h2>
-            <p className="text-t2 text-lg max-w-2xl mx-auto">Everything you need to upskill without spending a single rupee.</p>
+          <div className="text-center mb-12 md:mb-20">
+            <h2 className="text-3xl md:text-5xl font-syne font-extrabold mb-4 px-2">Built for Serious Growth.</h2>
+            <p className="text-t2 text-base md:text-lg max-w-2xl mx-auto px-4">Everything you need to upskill without spending a single rupee.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -269,11 +269,11 @@ export default function LandingPage() {
               >
                 {/* Liquid glass background effect */}
                 <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-white/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                
+
                 {/* Animated glow effect */}
                 <div className={`absolute -inset-px opacity-0 group-hover:opacity-20 transition-all duration-500 blur-2xl rounded-3xl ${feat.color === 'green' ? 'bg-primary' : feat.color === 'purple' ? 'bg-accent' : feat.color === 'yellow' ? 'bg-warning' : 'bg-danger'
                   }`} />
-                  
+
                 {/* Liquid ripple effect */}
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-700">
                   <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/5 to-transparent -skew-x-12 animate-pulse" />
@@ -302,7 +302,7 @@ export default function LandingPage() {
       {/* SECTION 5 - SOCIAL PROOF */}
       <section className="w-full py-32 px-4 relative overflow-hidden z-10">
         <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-3xl md:text-5xl font-syne font-extrabold mb-16">What the community says</h2>
+          <h2 className="text-3xl md:text-5xl font-syne font-extrabold mb-12 md:mb-16 px-2">What the community says</h2>
 
           <div className="flex flex-col md:flex-row justify-center items-center gap-6">
             {[
@@ -313,16 +313,16 @@ export default function LandingPage() {
               <div key={i} className={`group relative w-full max-w-sm p-8 rounded-3xl bg-black/20 backdrop-blur-xl border border-white/10 text-left ${review.offset} transition-all duration-500 hover:-translate-y-6 hover:bg-black/30 hover:backdrop-blur-2xl hover:border-white/20 hover:shadow-[0_0_40px_rgba(255,255,255,0.1)] cursor-pointer overflow-hidden`}>
                 {/* Liquid glass background effect */}
                 <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-white/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                
+
                 <div className="relative z-10">
                   <div className="flex gap-1 mb-4 text-warning group-hover:drop-shadow-[0_0_8px_rgba(245,158,11,0.8)] transition-all duration-300">
-                  {[...Array(review.rating)].map((_, j) => <Star key={j} className="w-4 h-4 fill-current" />)}
-                </div>
+                    {[...Array(review.rating)].map((_, j) => <Star key={j} className="w-4 h-4 fill-current" />)}
+                  </div>
                   <p className="text-t1/90 italic mb-6 group-hover:text-white/90 transition-colors duration-300">"{review.text}"</p>
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-primary to-accent p-[1px] group-hover:scale-110 transition-transform duration-300">
                       <div className="w-full h-full bg-white/5 backdrop-blur-md rounded-full flex items-center justify-center font-syne font-bold text-sm group-hover:bg-white/10 transition-all duration-300">{review.name[0]}</div>
-                  </div>
+                    </div>
                     <div>
                       <h4 className="font-syne font-bold font-sm group-hover:text-white transition-colors duration-300">{review.name}</h4>
                       <p className="text-xs text-t2 font-sans group-hover:text-white/70 transition-colors duration-300">{review.college}</p>

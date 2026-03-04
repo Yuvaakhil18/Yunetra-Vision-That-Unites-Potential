@@ -49,7 +49,7 @@ export default function Navbar() {
                             priority
                         />
                     </motion.div>
-                    <div className="flex font-syne font-extrabold text-xl tracking-tight">
+                    <div className="flex font-syne font-extrabold text-lg sm:text-xl tracking-tight">
                         {"YUNETRA".split("").map((char, i) => (
                             <motion.span
                                 key={i}
@@ -246,7 +246,7 @@ export default function Navbar() {
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: "100%" }}
                         transition={{ type: "tween", duration: 0.3 }}
-                        className="fixed inset-0 bg-[#000000]/95 backdrop-blur-3xl z-40 flex flex-col pt-24 px-6"
+                        className="fixed inset-0 bg-[#000000]/95 backdrop-blur-3xl z-40 flex flex-col pt-24 pb-12 px-6 overflow-y-auto"
                     >
                         {session ? (
                             <div className="flex flex-col gap-6">

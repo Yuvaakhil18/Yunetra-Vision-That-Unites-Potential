@@ -47,7 +47,7 @@ export default function Dashboard({ user }: { user: any }) {
                     <motion.h1
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
-                        className="text-3xl md:text-5xl font-syne font-extrabold tracking-tight mb-2"
+                        className="text-4xl md:text-5xl font-syne font-extrabold tracking-tight mb-2"
                     >
                         {getGreeting()}, <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">{userName}</span> <span className="text-warning">✦</span>
                     </motion.h1>
@@ -112,7 +112,7 @@ export default function Dashboard({ user }: { user: any }) {
                             <Link href="/match" className="text-primary font-sans text-sm font-semibold hover:underline ">See All Matches →</Link>
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                             {/* Show placeholders if no data since this is static layout building */}
                             <UserCard
                                 name="Rahul Deshmukh"
@@ -165,14 +165,14 @@ export default function Dashboard({ user }: { user: any }) {
 
                 {/* Right Column - Quick Actions */}
                 <aside className="xl:col-span-1">
-                    
+
                     {/* Network Preview */}
                     <section className="mb-8">
                         <div className="flex justify-between items-end mb-4">
                             <h2 className="text-2xl font-syne font-bold">Your Network</h2>
                             <Link href="/network" className="text-primary font-sans text-sm font-semibold hover:underline">View Network →</Link>
                         </div>
-                        
+
                         <div className="bg-subtle border border-[rgba(255,255,255,0.06)] rounded-2xl p-6">
                             {/* Network Stats */}
                             <div className="flex justify-center gap-6 mb-4 font-mono text-sm">
@@ -193,9 +193,9 @@ export default function Dashboard({ user }: { user: any }) {
                                     <div className="text-t2 text-xs">Connected</div>
                                 </div>
                             </div>
-                            
-                            <Link 
-                                href="/network" 
+
+                            <Link
+                                href="/network"
                                 className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-primary/10 border border-primary/30 rounded-xl text-primary font-sans font-semibold text-sm hover:bg-primary/20 transition-colors"
                             >
                                 <Users className="w-4 h-4" />
@@ -203,7 +203,7 @@ export default function Dashboard({ user }: { user: any }) {
                             </Link>
                         </div>
                     </section>
-                    
+
                     <h2 className="text-2xl font-syne font-bold mb-6">Quick Actions</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-1 gap-4">
                         {[

@@ -69,7 +69,7 @@ export default function LoginPage() {
                             </div>
                             <span className="font-syne font-bold text-xl tracking-tight text-white group-hover:text-primary transition-colors">YUNETRA</span>
                         </Link>
-                        <h1 className="text-3xl font-syne font-extrabold text-white mb-2">Welcome Back</h1>
+                        <h1 className="text-4xl font-syne font-extrabold text-white mb-2">Welcome Back</h1>
                         <p className="text-t2 text-sm px-4">Continue your skill-trading journey with the community.</p>
                     </div>
 
