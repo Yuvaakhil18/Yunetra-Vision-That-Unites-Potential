@@ -175,6 +175,35 @@ async function seedDemo() {
                 skillsTeach: ["Python", "React", "Node.js"], skillsLearn: ["Machine Learning", "DSA"], verifiedSkills: ["Python", "React"],
                 rating: 4.7, totalSessions: 8, skillCredits: 6, badges: ["First Step", "Rising Teacher"]
             },
+            // High-compatibility seed users (60-80% with Demo Student)
+            {
+                name: "Nikhil Varma", email: "nikhil@demo.yunetra.in", college: "VIT Vellore", branch: "Computer Science", year: "3rd",
+                skillsTeach: ["DSA", "Python"], skillsLearn: ["React", "Figma"], verifiedSkills: ["DSA"],
+                rating: 4.6, totalSessions: 8, skillCredits: 5, badges: ["First Step", "Rising Teacher", "DSA Mentor — Level 1"]
+                // Score: forwardMatches(React+Figma in their Learn)=2, reverseMatches(DSA in Demo's Learn)=1 → overlap=3/4*50=37.5
+                // rating=4.6/5*25=23, sessions=8, same college VIT=10 → ~78%
+            },
+            {
+                name: "Lavanya Krishnan", email: "lavanya@demo.yunetra.in", college: "NIT Trichy", branch: "Information Technology", year: "2nd",
+                skillsTeach: ["Machine Learning", "Python"], skillsLearn: ["Figma", "React"], verifiedSkills: ["Machine Learning"],
+                rating: 4.5, totalSessions: 10, skillCredits: 6, badges: ["First Step", "Rising Teacher"]
+                // Score: forward(React+Figma in their Learn)=2, reverse(ML in Demo's Learn)=1 → overlap=3/4*50=37.5
+                // rating=4.5/5*25=22.5, sessions=10, no same college → ~70%
+            },
+            {
+                name: "Pranav Choudary", email: "pranav@demo.yunetra.in", college: "IIIT Hyderabad", branch: "Computer Science", year: "3rd",
+                skillsTeach: ["DSA", "Node.js"], skillsLearn: ["Figma", "Machine Learning"], verifiedSkills: ["DSA"],
+                rating: 4.4, totalSessions: 9, skillCredits: 5, badges: ["First Step", "Rising Teacher"]
+                // Score: forward(Figma in their Learn)=1, reverse(DSA in Demo's Learn)=1 → overlap=2/4*50=25
+                // rating=4.4/5*25=22, sessions=9, no same college → ~56% base, bumped up with badge
+            },
+            {
+                name: "Riya Singhania", email: "riya@demo.yunetra.in", college: "VIT Vellore", branch: "Electronics & CS", year: "2nd",
+                skillsTeach: ["Machine Learning", "DSA"], skillsLearn: ["React", "Node.js"], verifiedSkills: ["Machine Learning"],
+                rating: 4.8, totalSessions: 15, skillCredits: 9, badges: ["First Step", "Rising Teacher", "ML Mentor — Level 1"]
+                // Score: forward(React in their Learn)=1, reverse(ML+DSA in Demo's Learn)=2 → overlap=3/4*50=37.5
+                // rating=4.8/5*25=24, sessions=15, same college VIT=10 → ~86% (top tier, good match)
+            },
             // Demo Login Account
             {
                 name: "Demo Student", email: "demo@yunetra.in", college: "VIT Vellore", branch: "Computer Science", year: "3rd",

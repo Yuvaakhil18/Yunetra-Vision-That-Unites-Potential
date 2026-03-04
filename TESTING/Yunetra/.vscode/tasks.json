@@ -11,6 +11,15 @@
 				"$tsc"
 			],
 			"group": "build"
+		},
+		{
+			"label": "Run Next.js Dev Server",
+			"type": "shell",
+			"command": "npx next dev",
+			"args": [],
+			"isBackground": true,
+			"problemMatcher": [],
+			"group": "build"
 		}
 	]
 }
